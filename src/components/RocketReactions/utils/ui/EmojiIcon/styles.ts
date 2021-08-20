@@ -21,6 +21,7 @@ const DEFAULT = `
 const BORDERED = `
   border: 1px solid ${LIGHT_GRAY};
   margin-right: 8px;
+  min-height: 32px;
   padding: 2.5px 8px;
   border-radius: 24px;`
 ;

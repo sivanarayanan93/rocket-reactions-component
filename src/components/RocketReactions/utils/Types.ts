@@ -6,3 +6,27 @@ export type TAction = {
     [key: string]: any
   }
 }
+
+export type TReaction = {
+  emoji: string
+}
+
+export type TSummary = {
+  emoji: string,
+  users: TUser[]
+}
+
+export type TUser = {
+  id: string | number
+  name: string,
+  avatar?: string
+}
+
+export type TOnSelect = (tabId: string) => void | undefined
+
+export type TRocketReactions = {
+  reactions?: TReaction[],
+  onSelect?: TOnSelect,
+  summary?: TSummary,
+  userId?: string | number
+}

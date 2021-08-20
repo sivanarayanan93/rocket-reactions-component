@@ -4,11 +4,17 @@ import { UiReactionsPicker } from '../style';
 import { useEffect, useRef, useState } from 'react';
 import useOutsideChecker from '../../../hooks/UseOutsideChecker';
 import { getMatchedReactions } from '../utils/app-utils';
+import { TOnSelect, TReaction } from '../utils/types';
 
-const ReactionsPickerTrigger = ({onSelect, reactions}: any) => {
+type TReactionsPicket = {
+  reactions?: TReaction[],
+  onSelect?: TOnSelect
+}
+
+const ReactionsPickerTrigger = ({onSelect, reactions}: TReactionsPicket) => {
   const [showPickerItems, setShowPickerItems] = useState(false),
     targetRef = useRef(null),
-    [availReactions, setAvailReactions] = useState<any>([]);
+    [availReactions, setAvailReactions] = useState<TReaction[]>([]);
 
 
   useEffect(() => {

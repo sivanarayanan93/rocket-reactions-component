@@ -1,4 +1,4 @@
-import { TChildren } from "../../Types";
+import { TChildren } from "../../types";
 import { UiTabPanel } from "./styles";
 
 const TabPanel = ({children, ...props}: TChildren) => {

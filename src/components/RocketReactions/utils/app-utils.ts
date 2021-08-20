@@ -1,58 +1,44 @@
-export const getDefaultReactions = () => {
-  return [
-    {
-      "id": 1,
-      "name": "Like",
-      "emoji": "👍"
-    },
-    {
-      "id": 2,
-      "name": "Love",
-      "emoji": "❤️"
-    },
-    {
-      "id": 3,
-      "name": "Haha",
-      "emoji": "😂"
-    },
-    {
-      "id": 4,
-      "name": "Wow",
-      "emoji": "😮"
-    },
-    {
-      "id": 5,
-      "name": "Sad",
-      "emoji": "😥"
-    },
-    {
-      "id": 6,
-      "name": "Angry",
-      "emoji": "😡"
-    }
-  ]
-};
-
-export const getDefaultSummary = () => {
-  return [{
-    "emoji": "👍",
-    users: [{
-      name: 'Test User',
-      avatar: getDefaultAvataorURL()
-    },{
-      name: 'Test User1',
-      avatar: getDefaultAvataorURL()
-    }]
+const defaultReactions = [
+  {
+    "id": 1,
+    "name": "Like",
+    "emoji": "👍"
   },
   {
-    "emoji": "😥",
-    users: [{
-      name: 'Test User1',
-      avatar: getDefaultAvataorURL()
-    }]
-  }  
-  ]
-}
+    "id": 2,
+    "name": "Love",
+    "emoji": "❤️"
+  },
+  {
+    "id": 3,
+    "name": "Haha",
+    "emoji": "😂"
+  },
+  {
+    "id": 4,
+    "name": "Wow",
+    "emoji": "😮"
+  },
+  {
+    "id": 5,
+    "name": "Sad",
+    "emoji": "😥"
+  },
+  {
+    "id": 6,
+    "name": "Angry",
+    "emoji": "😡"
+  }
+]
+
+export const EMOJI_NAME_MAPPING = {
+  like: "👍",
+  love: "❤️",
+  haha: "😂",
+  wow: "😮",
+  sad: "😥",
+  angry: "😡"
+} as any;
 
 export const getDefaultAvataorURL = () => {
   return 'http://dummyimage.com/128x134.png/dddddd/000000';
@@ -60,12 +46,44 @@ export const getDefaultAvataorURL = () => {
 
 export const getMatchedReactions = (reactions: any) => {
 
-  const defaultReactions = getDefaultReactions();
-
-  reactions = reactions ? reactions.map((item:any) => String(item.toLowerCase())) : defaultReactions;
-
+  if (reactions) {
+    reactions = reactions.map((item:any) => String(item.toLowerCase()));
+    return defaultReactions.filter(item => reactions.includes(item.name.toLowerCase()));
+  }
   
-  const availReactions = defaultReactions.filter(item => reactions.includes(item.name.toLowerCase()));
-  
-  return availReactions.length ? availReactions : defaultReactions;
+  return defaultReactions;
+}
+
+
+export const getEmojiByName = (name: string) => {
+  const reaction = defaultReactions.find((item:any) => String(item.name).toLowerCase() === String(name).toLowerCase());
+  return reaction ? reaction.emoji : '';
+}
+
+export const getUpdatedSummary = (summary: any) => {
+  const updatedSummary = Array.isArray(summary) ? summary.filter((item) => item.users && item.users.length) : [];
+
+  let allTab = { emoji: 'All', users: []} as any;
+
+  let allUsers = [] as any;
+
+  updatedSummary.forEach((reaction) => {
+    reaction.emoji = reaction.emoji.toLowerCase();
+    allUsers = allUsers.concat(reaction.users);
+  })
+
+  if (allUsers.length) {
+    const uniqueUserIds = [...new Set(allUsers.map((item:any) => item.id)) as any];
+
+    for(let userId of uniqueUserIds) {
+      let user = allUsers.find((item: any) => item.id === userId);
+      if (user) {
+        allTab.users.push(user);
+      }
+    }
+  }
+
+  updatedSummary.unshift(allTab)
+
+  return updatedSummary;
 }

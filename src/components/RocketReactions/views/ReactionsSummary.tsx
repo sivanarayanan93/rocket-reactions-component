@@ -1,59 +1,33 @@
 import { useState, useEffect, useRef } from 'react'
 import useOutsideChecker from '../../../hooks/UseOutsideChecker';
-import { getDefaultSummary } from '../utils/app-utils';
+import { getEmojiByName, getUpdatedSummary } from '../utils/app-utils';
 import ReactedReactions from './ReactedReactions'
 import ReactionSummaryPopup from './ReactionSummaryPopup';
 
 
-const getUpdatedSummary = (summary: any) => {
-  const updatedSummary = [...summary];
-
-  let allTab = { emoji: 'All', users: []} as any;
-
-  let allUsers = [] as any;
-
-  for(let reaction of updatedSummary) {
-    allUsers = allUsers.concat(reaction.users);
-  }
-
-  const uniqueUsersNames = [...new Set(allUsers.map((item:any) => item.name)) as any];
-
-  for(let userName of uniqueUsersNames) {
-    let user = allUsers.find((item: any) => item.name === userName);
-    if (user) {
-      allTab.users.push(user);
-    }
-  }
-
-  updatedSummary.unshift(allTab)
-
-  return updatedSummary;
-}
-
-
-const ReactionsSummary = ({summary, onSelect, user}: any) => {
-  const [currentTab, setCurrentTab] = useState(0),
+const ReactionsSummary = ({summary, onSelect, userId}: any) => {
+  const [currentTab, setCurrentTab] = useState(''),
     [availableSummary, setAvailableSummary] = useState<any>(null),
     [showSummary, setShowSummary] = useState(false),
     [currentTabSummary, setCurrentTabSummary] = useState({emoji: '', users: []}),
     targetRef = useRef(null);
 
   useEffect(() => {
-    const updatedSummary = getUpdatedSummary(Array.isArray(summary) ? summary : getDefaultSummary());
+    const updatedSummary = getUpdatedSummary(summary);
     setAvailableSummary(updatedSummary);
   }, [summary])
 
-  const handleOnHoverReaction = (tabId: number) => {
+  const handleOnHoverReaction = (tabId: string) => {
     setCurrentTab(tabId)
     setShowSummary(true)
   }
 
-  const handleOnSelectTab = (tabId: any) => {
+  const handleOnSelectTab = (tabId: string) => {
     setCurrentTab(tabId);
     updateReactorState(availableSummary, tabId);
   }
 
-  const updateReactorState = (reactions: any, tabId:any) => {
+  const updateReactorState = (reactions: any, tabId:string) => {
     const selectedReactions = reactions.find((item: any) => item.emoji === tabId);
 
     if(selectedReactions) {
@@ -76,9 +50,9 @@ const ReactionsSummary = ({summary, onSelect, user}: any) => {
   return (
     <div ref={targetRef} style={{"position": "relative"}}>
       {showSummary &&
-        <ReactionSummaryPopup handleOnSelectTab={handleOnSelectTab} currentTab={currentTab} reactions={availableSummary} users={currentTabSummary.users} emoji={currentTabSummary.emoji}/>
+        <ReactionSummaryPopup handleOnSelectTab={handleOnSelectTab} currentTab={currentTab} summaries={availableSummary} users={currentTabSummary.users} emoji={currentTabSummary.emoji}/>
       }
-      <ReactedReactions reactions={availableSummary} onHover={handleOnHoverReaction} onSelect={onSelect} user={user}/>
+      {availableSummary && <ReactedReactions summaries={availableSummary} onHover={handleOnHoverReaction} onSelect={onSelect} userId={userId}/>}
     </div>
   )
 }

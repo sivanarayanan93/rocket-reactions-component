@@ -1,5 +1,5 @@
 import React from 'react';
-import { TStringOrNumber } from '../../Types';
+import { TStringOrNumber } from '../../types';
 import { UiTab } from './styles';
 
 export type TTab = {

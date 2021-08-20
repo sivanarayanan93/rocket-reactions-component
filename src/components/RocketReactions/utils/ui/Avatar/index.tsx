@@ -12,7 +12,7 @@ const UiAvatar = styled.div`
 
 const defaultAvatar = getDefaultAvataorURL();
 
-const Avatar = ({ url }: { url: string}) => {
+const Avatar = ({ url }: { url: string | undefined }) => {
   return (
     <UiAvatar>
       <img alt="Avatar" src={url || defaultAvatar} />

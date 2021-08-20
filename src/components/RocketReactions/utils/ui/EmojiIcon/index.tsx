@@ -1,14 +1,17 @@
+import { EMOJI_NAME_MAPPING } from '../../app-utils';
 import { UiEmojiIcon } from './styles';
 
-const EmojiIcon = ({ variant, onSelect, children, reaction, onHover, isSelected, ...props }: any) => {
+
+
+const EmojiIcon = ({ variant, onSelect, children, emoji, onHover, isSelected, ...props }: any) => {
   const handleOnClick = () => {
     if (onSelect) {
-      onSelect(reaction && reaction.emoji);
+      onSelect(emoji);
     }
   }
 
   return (
-    <UiEmojiIcon {...props} isSelected={isSelected} variant={variant} onMouseOver={() => onHover ? onHover(reaction.emoji): ''} onClick={handleOnClick}>
+    <UiEmojiIcon {...props} isSelected={isSelected} variant={variant} onMouseOver={() => onHover ? onHover(emoji): ''} onClick={handleOnClick}>
       {children}
     </UiEmojiIcon>
   )

@@ -1,22 +1,30 @@
 import { UiReactor, UiReactors } from '../style';
+import { EMOJI_NAME_MAPPING } from '../utils/app-utils';
+import { TUser } from '../utils/types';
 import Avatar from '../utils/ui/Avatar';
 import EmojiIcon from '../utils/ui/EmojiIcon';
 
-const Reactors = ({ reactors, emoji }: { reactors: any, emoji: string}) => {
+type TReactors = {
+  reactors: TUser[],
+  emoji: string
+}
+
+const Reactors = ({ reactors, emoji }: TReactors) => {
   return (
     <UiReactors>
-      {reactors && reactors.map((reactor: any) => (
-        <Reactor key={reactor.name + emoji} emoji={emoji} reactor={reactor} />
+      {reactors && reactors.map((reactor: TUser) => (
+        <Reactor key={reactor.id + emoji} emoji={emoji} reactor={reactor} />
       ))}
     </UiReactors>
   )
 }
 
-const Reactor = ({reactor, emoji}: { reactor: any, emoji: string}) => {
+const Reactor = ({reactor, emoji}: { reactor: TUser, emoji: string}) => {
+  const emojiIcon = EMOJI_NAME_MAPPING[emoji];
   return (
     <UiReactor>
       <Avatar url={reactor.avatar}/>
-      <EmojiIcon> {emoji} </EmojiIcon>
+      <EmojiIcon> {emojiIcon} </EmojiIcon>
 
       <div>{reactor.name}</div>
     </UiReactor>

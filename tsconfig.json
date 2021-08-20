@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
+    "downlevelIteration": true,
     "lib": [
       "dom",
       "dom.iterable",
@@ -17,10 +18,20 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "outDir": "lib",
+    "declaration": true,
+    "sourceMap": true,
+    "declarationMap": true
   },
   "include": [
     "src"
+  ],
+  "exclude": [
+     "./src/stories",
+     "./src/setupTests.ts",
+     "**/__snapshots__",
+     "**/*.test.tsx",
+     "**/*.test.ts"
   ]
 }
