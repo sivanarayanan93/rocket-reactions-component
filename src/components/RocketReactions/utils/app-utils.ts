@@ -64,16 +64,10 @@ export const getMatchedReactions = (reactions: any) => {
 
   if (reactions) {
     reactions = reactions.map((item:any) => String(item.toLowerCase()));
-    return defaultReactions.filter(item => reactions.includes(item.name.toLowerCase()));
+    return defaultReactions.filter(item => reactions.includes(String(item.name).toLowerCase()));
   }
   
   return defaultReactions;
-}
-
-
-export const getEmojiByName = (name: string) => {
-  const reaction = defaultReactions.find((item:any) => String(item.name).toLowerCase() === String(name).toLowerCase());
-  return reaction ? reaction.emoji : '';
 }
 
 export const getUpdatedSummary = (summary: any) => {
@@ -84,7 +78,7 @@ export const getUpdatedSummary = (summary: any) => {
   let allUsers = [] as any;
 
   updatedSummary.forEach((reaction) => {
-    reaction.emoji = reaction.emoji.toLowerCase();
+    reaction.emoji = String(reaction.emoji).toLowerCase();
     allUsers = allUsers.concat(reaction.users);
   })
 

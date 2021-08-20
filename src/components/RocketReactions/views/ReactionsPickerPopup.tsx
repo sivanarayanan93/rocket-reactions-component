@@ -24,7 +24,7 @@ const ReactionsPickerTriggerPopup = ({reactions, onSelect, onClose}: TReactionsP
   return (
     <UiReactionsPickerPopup>
       {reactions && reactions.map((reaction: any) => {
-        const emoji = reaction.name.toLowerCase();
+        const emoji = String(reaction.name).toLowerCase();
 
         return <span key={reaction.name}>
           <EmojiIcon data-for="reactions" data-tip={reaction.name} emoji={emoji} onSelect={handleOnSelect}>

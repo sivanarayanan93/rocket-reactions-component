@@ -7,7 +7,7 @@ import { getMatchedReactions } from '../utils/app-utils';
 import { TOnSelect, TReaction } from '../utils/types';
 
 type TReactionsPicket = {
-  reactions?: TReaction[],
+  reactions?: Array<string>,
   onSelect?: TOnSelect
 }
 

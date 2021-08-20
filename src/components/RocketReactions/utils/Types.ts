@@ -25,7 +25,7 @@ export type TUser = {
 export type TOnSelect = (tabId: string) => void | undefined
 
 export type TRocketReactions = {
-  reactions?: TReaction[],
+  reactions?: Array<string>,
   onSelect?: TOnSelect,
   summary?: TSummary[],
   userId?: string | number
