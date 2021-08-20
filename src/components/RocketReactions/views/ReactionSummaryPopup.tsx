@@ -3,8 +3,17 @@ import TabPanel from '../utils/ui/Tabs/TabPanel';
 import Reactors from './Reactors';
 import { UiSummary } from '../style';
 import { useLayoutEffect, useRef, useState } from 'react';
+import { TSummary, TUser } from '../utils/types';
 
-const ReactionSummaryPopup = ({handleOnSelectTab, summaries, currentTab, users, emoji}: any) => {
+type TReactionSummaryPopup = {
+  handleOnSelectTab: (tabId: string) => void,
+  summaries: TSummary[],
+  currentTab: string,
+  users: TUser[],
+  emoji: string
+}
+
+const ReactionSummaryPopup = ({handleOnSelectTab, summaries, currentTab, users, emoji}: TReactionSummaryPopup) => {
   const [top, setTop] = useState(0),
     targetRef = useRef<HTMLDivElement | null>(null);
 

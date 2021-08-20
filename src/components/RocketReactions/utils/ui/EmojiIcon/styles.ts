@@ -7,7 +7,8 @@ const { LIGHT_GRAY, WHITE, PRIMARY_BLUE } = COLORS;
 type TEmojiIcon = {
   isSelected?: boolean,
   bordered?: boolean,
-  variant?: string
+  variant?: string,
+  emoji?: string
 }
 
 const DEFAULT = `

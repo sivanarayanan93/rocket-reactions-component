@@ -1,4 +1,3 @@
-import { EMOJI_NAME_MAPPING } from '../../app-utils';
 import { UiEmojiIcon } from './styles';
 
 

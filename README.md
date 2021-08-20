@@ -1,6 +1,6 @@
 # [Rocket Reactions](https://github.com/sivanarayanan93/rocket-reactions/tree/fix-comments)
 
-Installation:
+# Installation:
 ```
 yarn add @sivanarayanan93/rocket-reactions
 
@@ -41,3 +41,17 @@ npm i @sivanarayanan93/rocket-reactions
   ```
 
 `userId`: Id of logged-in user
+
+**Global styles**
+
+```
+  import React from 'react';
+  import { RocketReactions, GlobalStyles } from '@sivanarayanan93/rocket-reactions';
+
+  const Component = () => {
+    return (
+      <GlobalStyles />
+      <RocketReactions />
+    )
+  }
+```

@@ -1,4 +1,4 @@
-import { RocketReactions } from '../index';
+import { RocketReactions, GlobalStyles } from '../index';
 
 export default {
   title: 'Example/Reactions',
@@ -6,6 +6,7 @@ export default {
 };
 
 const Template= (args: any) => (<> <div style={{"height": "300PX", "display": "flex", "justifyContent": "center","alignItems": 'center'}}>
+  <GlobalStyles />
   <RocketReactions {...args}/>
   </div>
 </>);

@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import ReactTooltip from 'react-tooltip';
 import { UiReactionsPickerPopup } from '../style'
-import { EMOJI_NAME_MAPPING } from '../utils/app-utils';
+import { IMG_MAPPING } from '../utils/app-utils';
 import { TReaction } from '../utils/types';
-import EmojiIcon from '../utils/ui/EmojiIcon'
+import EmojiIcon from '../utils/ui/EmojiIcon';
 
 type TReactionsPickerTriggerPopup = {
   reactions: TReaction[],
@@ -23,14 +23,16 @@ const ReactionsPickerTriggerPopup = ({reactions, onSelect, onClose}: TReactionsP
 
   return (
     <UiReactionsPickerPopup>
-      {reactions && reactions.map((reaction: any) => (
-        <span key={reaction.name}>
-          <EmojiIcon data-for="reactions" data-tip={reaction.name} emoji={reaction.name.toLowerCase()} onSelect={handleOnSelect}>
-            {reaction.emoji}
+      {reactions && reactions.map((reaction: any) => {
+        const emoji = reaction.name.toLowerCase();
+
+        return <span key={reaction.name}>
+          <EmojiIcon data-for="reactions" data-tip={reaction.name} emoji={emoji} onSelect={handleOnSelect}>
+            <img alt={emoji} src={IMG_MAPPING[emoji]} width="16" height="16" />
           </EmojiIcon>
-          <ReactTooltip className="react-tooltip" id="reactions" place="top" effect="solid"/>
+          <ReactTooltip delayShow={200} className="react-tooltip" id="reactions" place="top" effect="solid"/>
         </span>
-      ))}
+      })}
     </UiReactionsPickerPopup>
   )
 }

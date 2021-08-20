@@ -1,11 +1,12 @@
 import { useState, useEffect, useRef } from 'react'
 import useOutsideChecker from '../../../hooks/UseOutsideChecker';
-import { getEmojiByName, getUpdatedSummary } from '../utils/app-utils';
+import { getUpdatedSummary } from '../utils/app-utils';
+import { TReactionsSummary } from '../utils/types';
 import ReactedReactions from './ReactedReactions'
 import ReactionSummaryPopup from './ReactionSummaryPopup';
 
 
-const ReactionsSummary = ({summary, onSelect, userId}: any) => {
+const ReactionsSummary = ({summaries, onSelect, userId}: TReactionsSummary) => {
   const [currentTab, setCurrentTab] = useState(''),
     [availableSummary, setAvailableSummary] = useState<any>(null),
     [showSummary, setShowSummary] = useState(false),
@@ -13,9 +14,9 @@ const ReactionsSummary = ({summary, onSelect, userId}: any) => {
     targetRef = useRef(null);
 
   useEffect(() => {
-    const updatedSummary = getUpdatedSummary(summary);
+    const updatedSummary = getUpdatedSummary(summaries);
     setAvailableSummary(updatedSummary);
-  }, [summary])
+  }, [summaries])
 
   const handleOnHoverReaction = (tabId: string) => {
     setCurrentTab(tabId)

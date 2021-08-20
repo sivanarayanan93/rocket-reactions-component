@@ -1,3 +1,10 @@
+import likeIcon from '../assets/like.png';
+import loveIcon from '../assets/love.png';
+import angryIcon from '../assets/angry.png';
+import wowIcon from '../assets/wow.png';
+import sadIcon from '../assets/sad.png';
+import hahaIcon from '../assets/haha.png';
+
 const defaultReactions = [
   {
     "id": 1,
@@ -38,6 +45,15 @@ export const EMOJI_NAME_MAPPING = {
   wow: "😮",
   sad: "😥",
   angry: "😡"
+} as any;
+
+export const IMG_MAPPING = {
+  like: likeIcon,
+  love: loveIcon,
+  haha: hahaIcon,
+  wow: wowIcon,
+  sad: sadIcon,
+  angry: angryIcon,
 } as any;
 
 export const getDefaultAvataorURL = () => {

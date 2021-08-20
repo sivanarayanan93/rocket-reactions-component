@@ -6,7 +6,7 @@ import ReactionsSummary from './views/ReactionsSummary';
 const RocketReactions = ({reactions, onSelect, summary, userId}: TRocketReactions) => {
   return (
     <UiRocketReactions>
-      <ReactionsSummary summary={summary} onSelect={onSelect} userId={userId}/>
+      <ReactionsSummary summaries={summary} onSelect={onSelect} userId={userId}/>
       <ReactionsPicker onSelect={onSelect} reactions={reactions} />
     </UiRocketReactions>
   )

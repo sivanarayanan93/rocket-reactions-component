@@ -1,16 +1,13 @@
 import { EMOJI_NAME_MAPPING } from '../utils/app-utils';
-import { TOnSelect, TSummary } from '../utils/types';
+import { TReactionsSummary, TSummary } from '../utils/types';
 import EmojiIcon from '../utils/ui/EmojiIcon'
 import Count from '../utils/ui/EmojiIcon/Count';
 
-type TReactedReactions = {
-  summaries?: TSummary[],
-  onSelect?: TOnSelect,
-  onHover?: (tabId: string) => void,
-  userId?: string | number
+interface IReactedReactions extends TReactionsSummary {
+  onHover: (tabId: string) => void
 }
 
-const ReactedReactions = ({summaries, onSelect, onHover, userId}: TReactedReactions) => {
+const ReactedReactions = ({summaries, onSelect, onHover, userId}: IReactedReactions) => {
 
   return (
     <div>

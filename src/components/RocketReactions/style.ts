@@ -63,6 +63,16 @@ export const UiReactionsPickerPopup = styled.div<TUiReactionsPopup>`
       background: transparent;
       transform: scale(2);
       transform-origin: 8px 16px;
+      animation: scale .2s ease-in-out;
+    }
+
+    @keyframes scale {
+      0% {
+        transform: scale(1);
+      }
+      100% {
+        transform: scale(2);
+      }
     }
   }
 
