@@ -2,11 +2,20 @@
 
 [Github](https://github.com/sivanarayanan93/rocket-reactions/tree/fix-comments)
 
+# Dependencies
+
 # Installation:
 ```
-yarn add @sivanarayanan93/rocket-reactions or npm i @sivanarayanan93/rocket-reactions
+yarn add @sivanarayanan93/rocket-reactions
 
 ```
+ or 
+```
+npm i @sivanarayanan93/rocket-reactions
+
+```
+
+Rocket Reactions requires React 17.0.2+
 
 # Reactions
 
