@@ -71,29 +71,32 @@ export const getMatchedReactions = (reactions: any) => {
 }
 
 export const getUpdatedSummary = (summary: any) => {
-  const updatedSummary = Array.isArray(summary) ? summary.filter((item) => item.users && item.users.length) : [];
+  let updatedSummary = Array.isArray(summary) ? summary.filter((item) => item.users && item.users.length) : [];
 
-  let allTab = { emoji: 'All', users: []} as any;
+  if (updatedSummary.length) {
+    let allTab = { emoji: 'All', users: []} as any;
 
-  let allUsers = [] as any;
+    let allUsers = [] as any;
 
-  updatedSummary.forEach((reaction) => {
-    reaction.emoji = String(reaction.emoji).toLowerCase();
-    allUsers = allUsers.concat(reaction.users);
-  })
+    updatedSummary.forEach((reaction) => {
+      reaction.emoji = String(reaction.emoji).toLowerCase();
+      allUsers = allUsers.concat(reaction.users);
+    })
 
-  if (allUsers.length) {
-    const uniqueUserIds = [...new Set(allUsers.map((item:any) => item.id)) as any];
+    if (allUsers.length) {
+      const uniqueUserIds = [...new Set(allUsers.map((item:any) => item.id)) as any];
 
-    for(let userId of uniqueUserIds) {
-      let user = allUsers.find((item: any) => item.id === userId);
-      if (user) {
-        allTab.users.push(user);
+      for(let userId of uniqueUserIds) {
+        let user = allUsers.find((item: any) => item.id === userId);
+        if (user) {
+          allTab.users.push(user);
+        }
       }
     }
-  }
 
-  updatedSummary.unshift(allTab)
+    updatedSummary.unshift(allTab)
+
+  }
 
   return updatedSummary;
 }

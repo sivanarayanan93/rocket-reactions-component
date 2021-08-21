@@ -33,7 +33,9 @@ const ReactionsSummary = ({summaries, onSelect, userId}: TReactionsSummary) => {
 
     if(selectedReactions) {
       setCurrentTabSummary(selectedReactions);
-    }    
+    } else if(reactions && reactions.length) {
+      setCurrentTab(reactions[reactions.length - 1].emoji);
+    }
   }
 
   useEffect(() => {
@@ -50,10 +52,15 @@ const ReactionsSummary = ({summaries, onSelect, userId}: TReactionsSummary) => {
 
   return (
     <div ref={targetRef} style={{"position": "relative"}}>
-      {showSummary &&
-        <ReactionSummaryPopup handleOnSelectTab={handleOnSelectTab} currentTab={currentTab} summaries={availableSummary} users={currentTabSummary.users} emoji={currentTabSummary.emoji}/>
+      {availableSummary && availableSummary.length > 0 &&
+        <>
+          {showSummary &&
+            <ReactionSummaryPopup handleOnSelectTab={handleOnSelectTab} currentTab={currentTab} summaries={availableSummary} users={currentTabSummary.users} emoji={currentTabSummary.emoji}/>
+          }
+
+          <ReactedReactions summaries={availableSummary} onHover={handleOnHoverReaction} onSelect={onSelect} userId={userId}/>
+        </>
       }
-      {availableSummary && <ReactedReactions summaries={availableSummary} onHover={handleOnHoverReaction} onSelect={onSelect} userId={userId}/>}
     </div>
   )
 }
