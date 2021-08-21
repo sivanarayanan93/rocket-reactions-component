@@ -1,4 +1,6 @@
-# [Rocket Reactions](https://github.com/sivanarayanan93/rocket-reactions/tree/fix-comments)
+# Rocket Reactions 
+
+[Github](https://github.com/sivanarayanan93/rocket-reactions/tree/fix-comments)
 
 # Installation:
 ```
