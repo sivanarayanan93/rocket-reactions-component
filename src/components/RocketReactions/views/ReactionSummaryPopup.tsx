@@ -32,8 +32,7 @@ const ReactionSummaryPopup = ({handleOnSelectTab, summaries, currentTab, users, 
       <ReactionsSummaryTabs onSelectTab={handleOnSelectTab} tabs={summaries} currentTab={currentTab}/>
 
       <TabPanel>
-        {/* Assiging love emoji for all tab*/}
-        <Reactors emoji={currentTab === 'All' ? '❤️' : emoji} reactors={users}/>
+        <Reactors emoji={emoji} reactors={users}/>
       </TabPanel>
     </UiSummary>
   )

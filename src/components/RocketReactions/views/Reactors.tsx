@@ -20,7 +20,8 @@ const Reactors = ({ reactors, emoji }: TReactors) => {
 }
 
 const Reactor = ({reactor, emoji}: { reactor: TUser, emoji: string}) => {
-  const emojiIcon = EMOJI_NAME_MAPPING[emoji];
+  {/* Assiging like emoji for all tab*/}
+  const emojiIcon = emoji === 'All' ? '👍' : EMOJI_NAME_MAPPING[emoji];
   return (
     <UiReactor>
       <Avatar url={reactor.avatar}/>
