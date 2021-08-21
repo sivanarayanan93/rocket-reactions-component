@@ -1,6 +1,6 @@
 # Rocket Reactions 
 
-[Github](https://github.com/sivanarayanan93/rocket-reactions/tree/fix-comments)
+[Github](https://github.com/sivanarayanan93/rocket-reactions-component)
 
 # Dependencies
 
